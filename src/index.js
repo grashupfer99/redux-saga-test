@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import axios from 'axios';
 import reducers from './reducers';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
 
@@ -17,9 +17,11 @@ axios.defaults.baseURL = 'http://rem-rest-api.herokuapp.com/api';
 
 const sagaMiddleware = createSagaMiddleware();
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
   reducers,
-  applyMiddleware(sagaMiddleware)
+  composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
 // run saga middleware

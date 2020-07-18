@@ -8,7 +8,7 @@ export default function NewUserForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log(firstName, lastName)
+    console.log(' handleSubmit >>>' ,firstName, lastName)
     props.onSubmit({
       firstName,
       lastName
