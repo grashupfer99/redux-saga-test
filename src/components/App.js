@@ -11,36 +11,30 @@ import { Alert } from 'reactstrap';
 //     yield 2;
 //     yield 3;
 //   }
-
 // }
 
 function App() {
   const dispatch = useDispatch();
-  // const [list, setList] = useState([]);
   const [isTriggered, setTriggered] = useState(false);
-  // const [isLoading, setLoading] = useState(true);
-  const {users, isLoading} = useSelector(({ users }) => ({
+  const { users, isLoading } = useSelector(({ users }) => ({
     users: users.items,
     isLoading: users.isLoading
   }));
-  
+
   useEffect(() => {
-    // alert('trigger');
-    // setLoading(false);
     dispatch(getUsersRequest());
-    
+
   }, [isLoading])
 
-  function handleSubmit({firstName, lastName}) {
+  function handleSubmit({ firstName, lastName }) {
     // console.log('get name', firstName, lastName)
-    // dispatch(usersLoading())
     dispatch(createUserRequest({
       firstName,
       lastName
     }))
   }
 
-  function handleDeleteUser(userId){
+  function handleDeleteUser(userId) {
     setTriggered(!isTriggered)
     console.log('delete user ', userId)
     // call delete user request redux action
@@ -52,11 +46,11 @@ function App() {
   // console.log('iterator ', iterator.next());
   // console.log('iterator ', iterator.next());
   // console.log('users >>> ', users);
-  function handleCloseAlert(){
-    dispatch(usersError({error: ''}))
+  function handleCloseAlert() {
+    dispatch(usersError({ error: '' }))
   }
 
-  if(isLoading) return <div>loading...</div>
+  if (isLoading) return <div>loading...</div>
 
   return (
     <div style={{ margin: '0 auto', padding: '20px', maxWidth: '600px' }}>
@@ -64,7 +58,7 @@ function App() {
         {users.error}
       </Alert>
       <NewUserForm onSubmit={handleSubmit} />
-      <UsersList users={users}  onDeleteUser={handleDeleteUser} />
+      <UsersList users={users} onDeleteUser={handleDeleteUser} />
     </div>
   );
 }

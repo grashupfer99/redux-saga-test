@@ -8,13 +8,11 @@ export default function NewUserForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(' handleSubmit >>>' ,firstName, lastName)
+    console.log(' handleSubmit >>>', firstName, lastName)
     props.onSubmit({
       firstName,
       lastName
     })
-
-    // reset names
     setFirstName('');
     setLastName('');
   }
